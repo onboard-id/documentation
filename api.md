@@ -18,17 +18,44 @@ To be able to issue verifiable credential, send a `POST` request to `https://onb
 If successful, server response as follows:
 ```
 {
-    issuerDID: <unique identifier of the credential issuer>
+    _id: <a unique identifier of the credential issuer>,
+    APIkey: <a unique key to access the API endpoints>,
+    issuerName: <issuer name provided>,
+    tenantId: <a unique identifier of the credential issuer>,
+    credentialDefinitionID: <an array which contains credential definition created by the issuer>
+}
+```
+
+### Remove an issuer
+
+To remove an issuer, send a `DELETE` request to `http://onboard-id.herokuapp.com/api/removeIssuer` without any body.
+
+If successful, server response as follows:
+```
+Successfully removed issuer with API key <API key provided>.
+```
+
+### Get issuer details
+
+To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com.api.getIssuerDetails` without any body.
+
+If successful, server response as follows:
+```
+{
+    _id: <a unique identifier of the credential issuer>,
+    APIkey: <API key provided>,
+    issuerName: <issuer name>,
+    tenantId: <a unique identifier of the credential issuer>,
+    credentialDefinitionID: <an array which contains credential definition created by the issuer>
 }
 ```
 
 ### Specify credential type and attributes
 
-To create a verifiable credential, send a `POST` request to `https://onboard-id.herokuapp.com/api/createCredential` with body of the following format: 
+To create a verifiable credential, send a `POST` request to `https://onboard-id.herokuapp.com/api/createCredentialDefinition` with body of the following format: 
 ```
 {
     name: "Credential Name",
-    version: "1.0", 
     attributes: attributes, // an array which contains attributes to be included in credential
 }
 ```
@@ -40,17 +67,18 @@ attributes = ['Name','Passport Number','KYC Process Date']
 If successful, server response as follows: 
 ```
 {
-    definitionId: <a unique identifier for the created credential type>
+    credentialDefinitionID: <a unique identifier for the created credential type>
 }
 ```
 
 ### Issuing credential to end user
 
-To issue a verifiable credential to the end user which defined attribute values, send a `POST` request to `https://onboard-id.herokuapp.com/api/issueCredential` with body of the following format: 
+To issue a verifiable credential to the end user which defined attribute values, send a `POST` request to `https://onboard-id.herokuapp.com/api/createCredential` with body of the following format: 
 ```
 {
-    definitionId: <unique identifier for credential type>,
-    credentialValues: <JSON body for credential attribute values>
+    alias: <credential alias>
+    credentialDefinitionID: <a unique identifier for credential type>,
+    credentialValues: <a JSON body for credential attribute values>
 }
 ```
 
@@ -67,28 +95,31 @@ If successful, server response as follows:
 ```
 {
     invitation: <a unique URL that allows end users to receive the credential is their mobile wallet>,
-    credentialId: <unique identifier for that specific credential>
+    credentialID: <a unique identifier for that specific credential>
 }
 ```
 
 ### Revoke credential
 
-If the credential issuer later wants to revoke a previously-issued credential, send a `POST` request to `https://onboard-id.herokuapp.com/api/revokeCredential` with body of the following format: 
+If the credential issuer later wants to revoke a previously-issued credential, send a `DELETE` request to `https://onboard-id.herokuapp.com/api/revokeCredential` with body of the following format: 
 ```
 {
-    definitionId: <unique identifier for credential type>,
-    credentialId: <unique identifier for that specific credential>
+    credentialDefinitionID: <a unique identifier for credential type>,
+    credentialID: <a unique identifier for that specific credential>
 }
 ```
 
-If successful, server response is a `200` code. 
+If successful, server response as follows:
+```
+Successfully revoked credential with credential ID <credentialID provided>.
+```
 
 ### Verify credential 
 
 To verify a credential presented by an end user, send a `POST` request to `https://onboard-id.herokuapp.com/api/verifyCredential` with body of the following format:
 ```
 {
-    definitionId: <unique identifier for credential type>
+    credentialDefinitionID: <a unique identifier for credential type>
 }
 ```
 
@@ -96,16 +127,16 @@ If successful, server response as follows:
 ```
 {
     verificationRequestUrl: <a unique URL that allows end users to prove their credentials>,
-    verificationId: <unique identifier for verification request>
+    verificationID: <a unique identifier for verification request>
 }
 ```
 
 ### Check credential verification
 
-To check whether the credential presented by an end user is valid, send a `POST` request to `https://onboard-id.herokuapp.com/api/checkVerification` with body of the following format:
+To check whether the credential presented by an end user is valid, send a `GET` request to `https://onboard-id.herokuapp.com/api/checkVerification` with body of the following format:
 ```
 {
-    verificationId: <unique identifier for verification request>
+    verificationID: <a unique identifier for verification request>
 }
 ```
 
@@ -128,5 +159,25 @@ For example, if the credential presented is the example credential mentioned ear
         verificationValidity: true,
         issuerDID: <unique identifier of the credential issuer>
     }
+}
+```
+
+### Get Credential Definition Details
+To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com.api.getCredentialDefinitionDetails` with body of the following format:
+```
+{
+    credentialDefinitionID: <a unique identifier for credential type>
+}
+```
+
+If successful, server response as follows:
+```
+{
+    _id: <a unique identifier of the credential definition>,
+    credentialID: <an array which contains the credential ID created>,
+    credentialDefinitionID: <Credential Definition ID provided>,
+    verificationPolicyID: <a unique identifier for verification request>
+    name: <credential definition name>,
+    attributes: <an array which contains attributes to be included in credential>
 }
 ```
