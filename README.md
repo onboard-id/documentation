@@ -21,4 +21,4 @@ To test the functionalities of REST API endpoints, setup MongoDB locally to stor
 3. Install MongoDB by running `npm install mongodb --save`.
 4. Create a folder <folder name> in the same directory of your implementation code to store the database.
 
-For everytime when you want to run REST API endpoints, run `mongod --dbpath=data --bind_ip 127.0.0.1` before running `npm start`.
+For everytime when you want to run REST API endpoints, run `mongod --dbpath=<folder name> --bind_ip 127.0.0.1` before running `npm start`.
