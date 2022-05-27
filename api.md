@@ -32,7 +32,9 @@ To remove an issuer, send a `DELETE` request to `http://onboard-id.herokuapp.com
 
 If successful, server response as follows:
 ```
-Successfully removed issuer with API key <API key provided>.
+{
+MESSAGE: Successfully removed issuer with API key <API key provided>.
+}
 ```
 
 ### Get issuer details
@@ -111,7 +113,9 @@ If the credential issuer later wants to revoke a previously-issued credential, s
 
 If successful, server response as follows:
 ```
-Successfully revoked credential with credential ID <credentialID provided>.
+{
+MESSAGE: Successfully revoked credential with credential ID <credentialID provided>.
+}
 ```
 
 ### Verify credential 
