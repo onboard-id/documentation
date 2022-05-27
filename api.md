@@ -37,7 +37,7 @@ Successfully removed issuer with API key <API key provided>.
 
 ### Get issuer details
 
-To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com.api.getIssuerDetails` without any body.
+To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com/api/getIssuerDetails` without any body.
 
 If successful, server response as follows:
 ```
@@ -94,7 +94,7 @@ credentialValues = {
 If successful, server response as follows: 
 ```
 {
-    invitation: <a unique URL that allows end users to receive the credential is their mobile wallet>,
+    invitation: <a unique URL that allows end users to receive the credential in their mobile wallet>,
     credentialID: <a unique identifier for that specific credential>
 }
 ```
@@ -163,7 +163,7 @@ For example, if the credential presented is the example credential mentioned ear
 ```
 
 ### Get Credential Definition Details
-To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com.api.getCredentialDefinitionDetails` with body of the following format:
+To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com/api/getCredentialDefinitionDetails` with body of the following format:
 ```
 {
     credentialDefinitionID: <a unique identifier for credential type>
