@@ -8,7 +8,7 @@ Authorization: Bearer <API key>
 
 ### Register as an issuer
 
-To be able to issue verifiable credential, send a `POST` request to `https://onboard-id.herokuapp.com/api/registerIssuer` with body of the following format:
+To be able to issue verifiable credential, send a `POST` request to `https://onboardid.herokuapp.com/api/registerIssuer` with body of the following format:
 ```
 {
     issuerName: <issuer name>
@@ -28,7 +28,7 @@ If successful, server response as follows:
 
 ### Remove an issuer
 
-To remove an issuer, send a `DELETE` request to `http://onboard-id.herokuapp.com/api/removeIssuer` without any body.
+To remove an issuer, send a `DELETE` request to `http://onboardid.herokuapp.com/api/removeIssuer` without any body.
 
 If successful, server response as follows:
 ```
@@ -39,7 +39,7 @@ If successful, server response as follows:
 
 ### Get issuer details
 
-To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com/api/getIssuerDetails` without any body.
+To get issuer details, send a `GET` request to `https://onboardid.herokuapp.com/api/getIssuerDetails` without any body.
 
 If successful, server response as follows:
 ```
@@ -54,7 +54,7 @@ If successful, server response as follows:
 
 ### Specify credential type and attributes
 
-To create a verifiable credential, send a `POST` request to `https://onboard-id.herokuapp.com/api/createCredentialDefinition` with body of the following format: 
+To create a verifiable credential, send a `POST` request to `https://onboardid.herokuapp.com/api/createCredentialDefinition` with body of the following format: 
 ```
 {
     name: "Credential Name",
@@ -75,7 +75,7 @@ If successful, server response as follows:
 
 ### Issuing credential to end user
 
-To issue a verifiable credential to the end user which defined attribute values, send a `POST` request to `https://onboard-id.herokuapp.com/api/createCredential` with body of the following format: 
+To issue a verifiable credential to the end user which defined attribute values, send a `POST` request to `https://onboardid.herokuapp.com/api/createCredential` with body of the following format: 
 ```
 {
     alias: <credential alias>
@@ -103,7 +103,7 @@ If successful, server response as follows:
 
 ### Revoke credential
 
-If the credential issuer later wants to revoke a previously-issued credential, send a `DELETE` request to `https://onboard-id.herokuapp.com/api/revokeCredential` with body of the following format: 
+If the credential issuer later wants to revoke a previously-issued credential, send a `DELETE` request to `https://onboardid.herokuapp.com/api/revokeCredential` with body of the following format: 
 ```
 {
     credentialDefinitionID: <a unique identifier for credential type>,
@@ -120,7 +120,7 @@ If successful, server response as follows:
 
 ### Verify credential 
 
-To verify a credential presented by an end user, send a `POST` request to `https://onboard-id.herokuapp.com/api/verifyCredential` with body of the following format:
+To verify a credential presented by an end user, send a `POST` request to `https://onboardid.herokuapp.com/api/verifyCredential` with body of the following format:
 ```
 {
     credentialDefinitionID: <a unique identifier for credential type>
@@ -137,7 +137,7 @@ If successful, server response as follows:
 
 ### Check credential verification
 
-To check whether the credential presented by an end user is valid, send a `GET` request to `https://onboard-id.herokuapp.com/api/checkVerification` with body of the following format:
+To check whether the credential presented by an end user is valid, send a `GET` request to `https://onboardid.herokuapp.com/api/checkVerification` with body of the following format:
 ```
 {
     verificationID: <a unique identifier for verification request>
@@ -167,7 +167,7 @@ For example, if the credential presented is the example credential mentioned ear
 ```
 
 ### Get Credential Definition Details
-To get issuer details, send a `GET` request to `https://onboard-id.herokuapp.com/api/getCredentialDefinitionDetails` with body of the following format:
+To get issuer details, send a `GET` request to `https://onboardid.herokuapp.com/api/getCredentialDefinitionDetails` with body of the following format:
 ```
 {
     credentialDefinitionID: <a unique identifier for credential type>
