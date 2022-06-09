@@ -137,11 +137,9 @@ If successful, server response as follows:
 
 ### Check credential verification
 
-To check whether the credential presented by an end user is valid, send a `GET` request to `https://onboardid.herokuapp.com/api/checkVerification` with body of the following format:
+To check whether the credential presented by an end user is valid, send a `GET` request to `https://onboardid.herokuapp.com/api/checkVerification` with parameter:
 ```
-{
     verificationID: <a unique identifier for verification request>
-}
 ```
 
 If the credential presented by the end user is a valid credential, server response as follows:
@@ -167,11 +165,9 @@ For example, if the credential presented is the example credential mentioned ear
 ```
 
 ### Get Credential Definition Details
-To get issuer details, send a `GET` request to `https://onboardid.herokuapp.com/api/getCredentialDefinitionDetails` with body of the following format:
+To get issuer details, send a `GET` request to `https://onboardid.herokuapp.com/api/getCredentialDefinitionDetails` with parameter:
 ```
-{
     credentialDefinitionID: <a unique identifier for credential type>
-}
 ```
 
 If successful, server response as follows:
